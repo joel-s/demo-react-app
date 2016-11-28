@@ -26,6 +26,10 @@ class FormInput extends Component {
       ? this.refs.input.value
       : this.refs.input.getValue()
   }
+
+  componentDidMount() {
+    this.refs.input.select();
+  }
 }
 
 class Excel extends Component {
