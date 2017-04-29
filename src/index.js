@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import Excel from './Excel';
 import './index.css';
@@ -24,6 +25,8 @@ var initialData = [
 ];
 
 ReactDOM.render(
-  <Excel headers={headers} initialData={initialData}/>,
+  <Router>
+    <Excel headers={headers} initialData={initialData}/>
+  </Router>,
   document.getElementById('excel')
 );
