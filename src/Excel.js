@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Jumbotron } from 'react-bootstrap';
 import './Excel.css';
 
 /******************************************************************************
@@ -33,11 +34,11 @@ class Excel extends Component {
   render() {
     return (
       <div className="Excel">
-        <div className="intro">
+        <Jumbotron className="intro">
             <h2>React Demo: Spreadsheet</h2>
             <h3>Click a heading to sort or reverse sort direction</h3>
             <h3>Double-click a cell to edit; press Enter to commit</h3>
-        </div>
+        </Jumbotron>
         {this._renderTable()}
       </div>
     )
