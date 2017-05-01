@@ -1,36 +1,22 @@
 import React, { Component } from 'react';
 import './Excel.css';
 
-class FormInput extends Component {
+/******************************************************************************
+ * Data for EXCEL component
+ */
+export var excelHeaders = [
+  "Book", "Author", "Language", "Published", "Sales"
+];
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: this.props.initialData,
-    }
-  }
-
-  render() {
-    return (
-      <input
-        type="text"
-        ref="input"
-        defaultValue={this.state.data}
-        autoFocus="true"
-      />
-    )
-  }
-
-  getValue() {
-    return 'value' in this.refs.input
-      ? this.refs.input.value
-      : this.refs.input.getValue()
-  }
-
-  componentDidMount() {
-    this.refs.input.select();
-  }
-}
+export var excelData = [
+  ["The Lord of the Rings", "J. R. R. Tolkien", "English", "1954–1955", "150 million"],
+  ["Le Petit Prince (The Little Prince)", "Antoine de Saint-Exupéry", "French", "1943", "140 million"],
+  ["Harry Potter and the Philosopher's Stone", "J. K. Rowling", "English", "1997", "107 million"],
+  ["And Then There Were None", "Agatha Christie", "English", "1939", "100 million"],
+  ["Dream of the Red Chamber", "Cao Xueqin", "Chinese", "1754–1791", "100 million"],
+  ["The Hobbit", "J. R. R. Tolkien", "English", "1937", "100 million"],
+  ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"],
+];
 
 class Excel extends Component {
 
@@ -47,6 +33,11 @@ class Excel extends Component {
   render() {
     return (
       <div className="Excel">
+        <div className="intro">
+            <h2>React Demo: Spreadsheet</h2>
+            <h3>Click a heading to sort or reverse sort direction</h3>
+            <h3>Double-click a cell to edit; press Enter to commit</h3>
+        </div>
         {this._renderTable()}
       </div>
     )
@@ -83,7 +74,7 @@ class Excel extends Component {
                 if (this._isEditing(rowIdx, idx)) {
                   contents = (
                     <form onSubmit={this._save.bind(this, rowIdx, idx)}>
-                      <FormInput ref="input" initialData={cell}/>
+                      <ExcelInput ref="input" initialData={cell}/>
                     </form>
                   )
                 }
@@ -138,7 +129,37 @@ class Excel extends Component {
     newData[row] = newRow
     this.setState({data: newData, edit: null})
   }
+}
 
+class ExcelInput extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: this.props.initialData,
+    }
+  }
+
+  render() {
+    return (
+      <input
+        type="text"
+        ref="input"
+        defaultValue={this.state.data}
+        autoFocus="true"
+      />
+    )
+  }
+
+  getValue() {
+    return 'value' in this.refs.input
+      ? this.refs.input.value
+      : this.refs.input.getValue()
+  }
+
+  componentDidMount() {
+    this.refs.input.select();
+  }
 }
 
 export default Excel;
