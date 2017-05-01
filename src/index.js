@@ -3,14 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Navbar } from 'react-bootstrap';
 import { HashRouter as Router } from 'react-router-dom';
-import App from './App';
+//import App from './App';
 import Excel, { excelHeaders, excelData } from './Excel';
 import './index.css';
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 
 ReactDOM.render(
   <Router>
@@ -28,5 +23,5 @@ ReactDOM.render(
       <Excel headers={excelHeaders} initialData={excelData}/>
     </div>
   </Router>,
-  document.getElementById('excel')
+  document.getElementById('root')
 );
