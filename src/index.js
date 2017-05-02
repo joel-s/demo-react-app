@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, Navbar } from 'react-bootstrap';
-import { HashRouter as Router } from 'react-router-dom';
+import { Grid, Navbar, Nav, NavItem } from 'react-bootstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 //import App from './App';
-import Excel, { excelHeaders, excelData } from './Excel';
+import Excel from './Excel';
 import './index.css';
 
 ReactDOM.render(
@@ -16,11 +16,14 @@ ReactDOM.render(
             <Navbar.Brand>
               <a href="/">React App</a>
             </Navbar.Brand>
+            <Nav>
+              <NavItem eventKey={1} href="spreadsheet">Spreadsheet</NavItem>
+            </Nav>
             <Navbar.Toggle />
           </Navbar.Header>
         </Grid>
       </Navbar>
-      <Excel headers={excelHeaders} initialData={excelData}/>
+      <Route path="/spreadsheet" component={Excel}/>
     </div>
   </Router>,
   document.getElementById('root')

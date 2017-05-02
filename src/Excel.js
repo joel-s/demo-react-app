@@ -5,11 +5,11 @@ import './Excel.css';
 /******************************************************************************
  * Data for EXCEL component
  */
-export var excelHeaders = [
+var defaultHeaders = [
   "Book", "Author", "Language", "Published", "Sales"
 ];
 
-export var excelData = [
+var defaultData = [
   ["The Lord of the Rings", "J. R. R. Tolkien", "English", "1954–1955", "150 million"],
   ["Le Petit Prince (The Little Prince)", "Antoine de Saint-Exupéry", "French", "1943", "140 million"],
   ["Harry Potter and the Philosopher's Stone", "J. K. Rowling", "English", "1997", "107 million"],
@@ -22,9 +22,10 @@ export var excelData = [
 class Excel extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      data: this.props.initialData,
+      headers: this.props.headers || defaultHeaders,
+      data: this.props.initialData || defaultData,
       sortBy: null, // rowIdx
       descending: false,
       edit: null, // {row: rowIdx, col: colIdx}
@@ -49,7 +50,7 @@ class Excel extends Component {
       <table>
         <thead>
           <tr>{
-            this.props.headers.map((title, idx) => {
+            this.state.headers.map((title, idx) => {
               let header = title;
               if (this.state.sortBy === idx) {
                 header += this.state.descending ? ' \u2191' : ' \u2193';
