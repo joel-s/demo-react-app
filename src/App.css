@@ -1,3 +1,21 @@
-.App {
+.App div#panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 600px;
+  background-color: #ccc;
+}
+
+.App div#quote-div {
+  width: 400px;
+  margin: auto;
+  padding: 30px;
+}
+
+.App p#quote {
+  font-size: 40px;
+  font-weight: bold;
   text-align: center;
+  color: #222;
 }

@@ -2,8 +2,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Navbar, Nav, NavItem } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-//import App from './App';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
+import App from './App';
 import Excel from './Excel';
 import './index.css';
 
@@ -14,16 +15,22 @@ ReactDOM.render(
         <Grid>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">React App</a>
+              <Link to="/">React App</Link>
             </Navbar.Brand>
             <Nav>
-              <NavItem eventKey={1} href="spreadsheet">Spreadsheet</NavItem>
+              <LinkContainer to="/spreadsheet">
+                <NavItem eventKey={1}>Spreadsheet</NavItem>
+              </LinkContainer>
             </Nav>
             <Navbar.Toggle />
           </Navbar.Header>
         </Grid>
       </Navbar>
+
+      // Main "routing table"
+      <Route path="/" exact={true} component={App}/>
       <Route path="/spreadsheet" component={Excel}/>
+
     </div>
   </Router>,
   document.getElementById('root')
