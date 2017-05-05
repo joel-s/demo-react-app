@@ -1,31 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import './Excel.css';
 
-/******************************************************************************
- * Data for EXCEL component
- */
-var defaultHeaders = [
-  "Book", "Author", "Language", "Published", "Sales"
-];
-
-var defaultData = [
-  ["The Lord of the Rings", "J. R. R. Tolkien", "English", "1954–1955", "150 million"],
-  ["Le Petit Prince (The Little Prince)", "Antoine de Saint-Exupéry", "French", "1943", "140 million"],
-  ["Harry Potter and the Philosopher's Stone", "J. K. Rowling", "English", "1997", "107 million"],
-  ["And Then There Were None", "Agatha Christie", "English", "1939", "100 million"],
-  ["Dream of the Red Chamber", "Cao Xueqin", "Chinese", "1754–1791", "100 million"],
-  ["The Hobbit", "J. R. R. Tolkien", "English", "1937", "100 million"],
-  ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"],
-];
 
 class Excel extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      headers: this.props.headers || defaultHeaders,
-      data: this.props.initialData || defaultData,
+      data: this.props.initialData,
       sortBy: null, // rowIdx
       descending: false,
       edit: null, // {row: rowIdx, col: colIdx}
@@ -50,7 +33,7 @@ class Excel extends Component {
       <table>
         <thead>
           <tr>{
-            this.state.headers.map((title, idx) => {
+            this.props.headers.map((title, idx) => {
               let header = title;
               if (this.state.sortBy === idx) {
                 header += this.state.descending ? ' \u2191' : ' \u2193';
@@ -132,6 +115,27 @@ class Excel extends Component {
     this.setState({data: newData, edit: null})
   }
 }
+
+Excel.propTypes = {
+  headers: PropTypes.arrayOf(PropTypes.string),
+  initialData: PropTypes.arrayOf(PropTypes.array)
+};
+
+Excel.defaultProps = {
+  headers: [
+    "Book", "Author", "Language", "Published", "Sales"
+  ],
+  initialData: [
+    ["The Lord of the Rings", "J. R. R. Tolkien", "English", "1954-1955", "150 million"],
+    ["Le Petit Prince (The Little Prince)", "Antoine de Saint-Exupéry", "French", "1943", "140 million"],
+    ["Harry Potter and the Philosopher's Stone", "J. K. Rowling", "English", "1997", "107 million"],
+    ["And Then There Were None", "Agatha Christie", "English", "1939", "100 million"],
+    ["Dream of the Red Chamber", "Cao Xueqin", "Chinese", "1754-1791", "100 million"],
+    ["The Hobbit", "J. R. R. Tolkien", "English", "1937", "100 million"],
+    ["She: A History of Adventure", "H. Rider Haggard", "English", "1887", "100 million"],
+  ]
+};
+
 
 class ExcelInput extends Component {
 

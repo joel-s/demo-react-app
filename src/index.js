@@ -15,7 +15,7 @@ ReactDOM.render(
         <Grid>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/">React App</Link>
+              <Link to="/">React Demo</Link>
             </Navbar.Brand>
             <Nav>
               <LinkContainer to="/spreadsheet">
